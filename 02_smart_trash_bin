@@ -1,0 +1,27 @@
+#include <Servo.h>
+Servo tutup;
+
+void setup() {
+  pinMode(9, OUTPUT);
+  pinMode(8, INPUT);
+  tutup.attach(6);
+  tutup.write(0);
+}
+
+void loop() {
+  digitalWrite(9, LOW);
+  delayMicroseconds(2);
+  digitalWrite(9, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(9, LOW);
+
+  long d = pulseIn(8, HIGH);
+  int jarak = d * 0.034 / 2;
+
+  if (jarak > 0 && jarak < 20) {
+    tutup.write(90);
+    delay(3000);
+    tutup.write(0);
+  }
+  delay(300);
+}
