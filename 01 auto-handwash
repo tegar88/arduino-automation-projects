@@ -1,0 +1,28 @@
+#define trigPin 9
+#define echoPin 8
+#define relayPin 7
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(relayPin, OUTPUT);
+  digitalWrite(relayPin, HIGH); // relay OFF
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  long durasi = pulseIn(echoPin, HIGH);
+  int jarak = durasi * 0.034 / 2;
+
+  if (jarak > 0 && jarak < 15) {
+    digitalWrite(relayPin, LOW);
+    delay(2000);
+    digitalWrite(relayPin, HIGH);
+  }
+  delay(200);
+}
