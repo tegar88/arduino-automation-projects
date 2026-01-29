@@ -1,0 +1,18 @@
+#include <Servo.h>
+Servo jemuran;
+
+void setup() {
+  jemuran.attach(6);
+  jemuran.write(0);
+}
+
+void loop() {
+  int hujan = analogRead(A0);
+
+  if (hujan > 500) {
+    jemuran.write(90); // masuk
+  } else {
+    jemuran.write(0);  // keluar
+  }
+  delay(1000);
+}
