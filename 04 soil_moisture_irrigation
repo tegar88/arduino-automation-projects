@@ -1,0 +1,17 @@
+#define relayPin 7
+
+void setup() {
+  pinMode(relayPin, OUTPUT);
+  digitalWrite(relayPin, HIGH);
+}
+
+void loop() {
+  int tanah = analogRead(A0);
+
+  if (tanah > 600) {
+    digitalWrite(relayPin, LOW);
+  } else {
+    digitalWrite(relayPin, HIGH);
+  }
+  delay(1000);
+}
