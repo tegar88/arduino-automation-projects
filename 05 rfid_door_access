@@ -1,0 +1,22 @@
+#include <SPI.h>
+#include <MFRC522.h>
+#include <Servo.h>
+
+MFRC522 rfid(10, 9);
+Servo pintu;
+
+void setup() {
+  SPI.begin();
+  rfid.PCD_Init();
+  pintu.attach(6);
+  pintu.write(0);
+}
+
+void loop() {
+  if (!rfid.PICC_IsNewCardPresent()) return;
+  if (!rfid.PICC_ReadCardSerial()) return;
+
+  pintu.write(90);
+  delay(3000);
+  pintu.write(0);
+}
