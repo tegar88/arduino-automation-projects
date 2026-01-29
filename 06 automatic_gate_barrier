@@ -1,0 +1,18 @@
+#include <Servo.h>
+Servo palang;
+
+void setup() {
+  palang.attach(6);
+  palang.write(0);
+}
+
+void loop() {
+  long d = pulseIn(8, HIGH);
+  int jarak = d * 0.034 / 2;
+
+  if (jarak < 20) {
+    palang.write(90);
+    delay(3000);
+    palang.write(0);
+  }
+}
